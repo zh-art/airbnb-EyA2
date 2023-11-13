@@ -7,14 +7,16 @@ import { FcGoogle } from 'react-icons/fc';
 import { useCallback, useState } from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import userRegisterModal from '../../hooks/useRegisterModal';
+import userLoginModal from '@/app/hooks/useLoginModal';
 import Modal from './Modal';
 import Heading from '../Heading';
-import Input from '../Inputs/Input';
+import Input from '../inputs/Input';
 import toast from 'react-hot-toast';
 import Button from '../Button';
 import { signIn } from 'next-auth/react';
 const RegisterModal = () => {
     const registerModal = userRegisterModal();
+    const loginModal = userLoginModal();
     const [isLoading, setIsLoading] = useState(false);
 
     const {
@@ -44,6 +46,11 @@ const RegisterModal = () => {
             })
     }
 
+    const onToggle = useCallback(() => {
+        registerModal.onClose();
+        loginModal.onOpen();
+    },[loginModal, registerModal]);
+
     const bodyContent = (
         <div className="flex flex-col space-y-4">
             <Heading 
@@ -62,11 +69,11 @@ const RegisterModal = () => {
             <Button outline label="Continue with Google" icon={FcGoogle} onClick={() => signIn('google')} />
             <Button outline label="Continue with GitHub" icon={AiFillGithub} onClick={() => signIn('github')} />
             <div className="text-neutral-500 text-center mt-4 font-light">
-                <div onClick={registerModal.onClose} className="justify-center text-center flex flex-row items-center gap-2">
+                <div className="justify-center text-center flex flex-row items-center gap-2">
                     <div>
                         Already have an account?
                     </div>
-                    <div className="text-neutral-800 cursor-pointer hover:underline">
+                    <div onClick={onToggle} className="text-neutral-800 cursor-pointer hover:underline">
                         Log in
                     </div>
                 </div>
