@@ -9,13 +9,10 @@ const ReservationsPage = async () => {
 
   if (!currentUser) {
     return (
-      <ClientOnly> 
-        <EmptyState
-          title="Unauthorized"
-          subtitle="Please login"
-        />
+      <ClientOnly>
+        <EmptyState title="Unauthorized" subtitle="Please login" />
       </ClientOnly>
-    )
+    );
   }
   const reservations = await getReservations({ authorId: currentUser.id });
 
@@ -32,11 +29,8 @@ const ReservationsPage = async () => {
 
   return (
     <ClientOnly>
-      <TripsClient
-        reservations={reservations}
-        currentUser={currentUser}
-      />
+      <TripsClient reservations={reservations} currentUser={currentUser} />
     </ClientOnly>
   );
-}
+};
 export default ReservationsPage;

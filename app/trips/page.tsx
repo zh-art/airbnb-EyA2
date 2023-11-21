@@ -1,4 +1,3 @@
-
 import EmptyState from "@/app/components/EmptyState";
 import ClientOnly from "@/app/components/ClientOnly";
 import getCurrentUser from "@/app/actions/getCurrentUser";
@@ -10,10 +9,7 @@ const TripsPage = async () => {
   if (!currentUser) {
     return (
       <ClientOnly>
-        <EmptyState
-          title="Sin acceso"
-          subtitle="Por favor inicia sesión o crea una cuenta."
-        />
+        <EmptyState title="Unauthorized" subtitle="Please login" />
       </ClientOnly>
     );
   }
@@ -22,22 +18,16 @@ const TripsPage = async () => {
   if (reservations.length === 0) {
     return (
       <ClientOnly>
-        <EmptyState
-          title="No hay viajes"
-          subtitle="Por favor agrega un viaje."
-        />
+        <EmptyState title="There are no trips" subtitle="Please add a trip." />
       </ClientOnly>
     );
   }
 
   return (
     <ClientOnly>
-      <TripsClient
-        reservations={reservations}
-        currentUser={currentUser}
-      />
+      <TripsClient reservations={reservations} currentUser={currentUser} />
     </ClientOnly>
   );
-}
+};
 
 export default TripsPage;
