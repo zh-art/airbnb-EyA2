@@ -1,3 +1,6 @@
+export const dynamic = 'force-dynamic';
+// 'auto' | 'force-dynamic' | 'error' | 'force-static'
+
 import ClientOnly from "./components/ClientOnly";
 import Container from "./components/Container";
 import EmptyState from "./components/EmptyState";
