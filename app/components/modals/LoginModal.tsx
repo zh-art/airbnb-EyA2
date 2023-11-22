@@ -11,7 +11,7 @@ import userRegisterModal from "../../hooks/useRegisterModal";
 import useLoginModal from "../../hooks/useLoginModal";
 import Modal from "./Modal";
 import Heading from "../Heading";
-import Input from "./../inputs/Input";
+import Input from "@/app/components/inputs/Input";
 import { toast } from "react-hot-toast";
 import Button from "../Button";
 import { useRouter } from "next/navigation";
